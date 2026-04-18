@@ -30,9 +30,9 @@ export function validatePasswordMatch(password: string, confirm: string): boolea
 }
 
 export function validateDeviceId(deviceId: string): boolean {
-  return deviceId && deviceId.length > 0;
+  return deviceId.length > 0;
 }
 
 export function validateToken(token: string): boolean {
-  return token && token.length >= 32;
+  return token.length >= 32;
 }
