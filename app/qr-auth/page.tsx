@@ -19,6 +19,15 @@ export default function QrAuthPage() {
   const [polling, setPolling] = useState(!!paramToken);
   const [confirmingDevice, setConfirmingDevice] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authFormData, setAuthFormData] = useState({
+    username: '',
+    password: '',
+    email: '',
+    password_confirm: '',
+  });
 
   // ตรวจสอบการ login
   useEffect(() => {
@@ -150,6 +159,42 @@ export default function QrAuthPage() {
     }
   };
 
+  const handleAuthSubmit = async () => {
+    setAuthLoading(true);
+    const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/register';
+
+    try {
+      const body = authMode === 'login'
+        ? { username: authFormData.username, password: authFormData.password }
+        : authFormData;
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('user', JSON.stringify({
+          account_id: data.account_id,
+          username: data.username,
+          expire_at: data.expire_at,
+        }));
+        setIsLoggedIn(true);
+        setShowAuthModal(false);
+        setAuthFormData({ username: '', password: '', email: '', password_confirm: '' });
+      } else {
+        setError(data.error || 'เกิดข้อผิดพลาด');
+      }
+    } catch (err) {
+      setError('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์');
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
   const qrUrl = token
     ? `${typeof window !== 'undefined' ? window.location.origin : ''}/qr-scan?token=${token}`
     : '';
@@ -166,6 +211,26 @@ export default function QrAuthPage() {
         {!isLoggedIn ? (
           <div className={styles.notLoggedIn}>
             <p>⚠️ กรุณา เข้าสู่ระบบ ก่อนเชื่อมต่ออุปกรณ์</p>
+            <div className={styles.authButtons}>
+              <button
+                className={styles.loginBtn}
+                onClick={() => {
+                  setAuthMode('login');
+                  setShowAuthModal(true);
+                }}
+              >
+                เข้าสู่ระบบ
+              </button>
+              <button
+                className={styles.registerBtn}
+                onClick={() => {
+                  setAuthMode('register');
+                  setShowAuthModal(true);
+                }}
+              >
+                ลงทะเบียน
+              </button>
+            </div>
           </div>
         ) : loading ? (
           <div className={styles.loading}>
@@ -215,6 +280,103 @@ export default function QrAuthPage() {
           </>
         ) : null}
       </div>
+
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <button
+              className={styles.closeBtn}
+              onClick={() => setShowAuthModal(false)}
+            >
+              ✕
+            </button>
+
+            <h2>{authMode === 'login' ? 'เข้าสู่ระบบ' : 'ลงทะเบียน'}</h2>
+
+            {error && <div className={styles.modalError}>{error}</div>}
+
+            <div className={styles.formGroup}>
+              <label>ชื่อผู้ใช้</label>
+              <input
+                type="text"
+                value={authFormData.username}
+                onChange={(e) =>
+                  setAuthFormData({ ...authFormData, username: e.target.value })
+                }
+                placeholder="กรอกชื่อผู้ใช้"
+              />
+            </div>
+
+            {authMode === 'register' && (
+              <div className={styles.formGroup}>
+                <label>อีเมล</label>
+                <input
+                  type="email"
+                  value={authFormData.email}
+                  onChange={(e) =>
+                    setAuthFormData({ ...authFormData, email: e.target.value })
+                  }
+                  placeholder="กรอกอีเมล"
+                />
+              </div>
+            )}
+
+            <div className={styles.formGroup}>
+              <label>รหัสผ่าน</label>
+              <input
+                type="password"
+                value={authFormData.password}
+                onChange={(e) =>
+                  setAuthFormData({ ...authFormData, password: e.target.value })
+                }
+                placeholder="กรอกรหัสผ่าน"
+              />
+            </div>
+
+            {authMode === 'register' && (
+              <div className={styles.formGroup}>
+                <label>ยืนยันรหัสผ่าน</label>
+                <input
+                  type="password"
+                  value={authFormData.password_confirm}
+                  onChange={(e) =>
+                    setAuthFormData({
+                      ...authFormData,
+                      password_confirm: e.target.value,
+                    })
+                  }
+                  placeholder="ยืนยันรหัสผ่าน"
+                />
+              </div>
+            )}
+
+            <button
+              className={styles.submitBtn}
+              onClick={handleAuthSubmit}
+              disabled={authLoading}
+            >
+              {authLoading
+                ? 'กำลังดำเนิน...'
+                : authMode === 'login'
+                ? 'เข้าสู่ระบบ'
+                : 'ลงทะเบียน'}
+            </button>
+
+            <p className={styles.toggleMode}>
+              {authMode === 'login' ? 'ยังไม่มีบัญชี? ' : 'มีบัญชีแล้ว? '}
+              <button
+                className={styles.toggleBtn}
+                onClick={() =>
+                  setAuthMode(authMode === 'login' ? 'register' : 'login')
+                }
+              >
+                {authMode === 'login' ? 'ลงทะเบียน' : 'เข้าสู่ระบบ'}
+              </button>
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

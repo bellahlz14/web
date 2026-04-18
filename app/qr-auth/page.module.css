@@ -191,3 +191,152 @@
     opacity: 0.5;
   }
 }
+
+.authButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.loginBtn,
+.registerBtn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #f3202b;
+  background: transparent;
+  color: #f3202b;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.loginBtn:hover,
+.registerBtn:hover {
+  background: rgba(243, 32, 43, 0.1);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeBtn:hover {
+  color: #f3202b;
+}
+
+.modalContent h2 {
+  color: #f3202b;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.modalContent .formGroup {
+  margin-bottom: 15px;
+}
+
+.modalContent .formGroup label {
+  display: block;
+  color: #ccc;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.modalContent .formGroup input {
+  width: 100%;
+  padding: 10px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.modalContent .formGroup input:focus {
+  outline: none;
+  border-color: #f3202b;
+  box-shadow: 0 0 0 2px rgba(243, 32, 43, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 12px;
+  background: #f3202b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #d41a22;
+}
+
+.submitBtn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.modalError {
+  background: #8b2424;
+  color: #ffcccc;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #b33333;
+  font-size: 14px;
+}
+
+.toggleMode {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: #f3202b;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 0;
+}
