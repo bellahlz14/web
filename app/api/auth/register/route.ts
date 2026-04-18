@@ -59,15 +59,6 @@ export async function POST(request: NextRequest) {
       [username, passwordHash, email]
     );
 
-    // Grant 7 days trial subscription
-    const expireAt = new Date();
-    expireAt.setDate(expireAt.getDate() + 7);
-
-    await getLastInsertId(
-      'INSERT INTO subscriptions (account_id, expire_at, granted_by, created_at) VALUES (?, ?, ?, NOW())',
-      [accountId, expireAt.toISOString().split('T')[0] + ' 23:59:59', 'trial']
-    );
-
     // Link device if provided
     if (deviceid) {
       await getLastInsertId(
@@ -81,10 +72,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: 'ลงทะเบียนสำเร็จ',
+        message: 'ลงทะเบียนสำเร็จ โปรดดูโฆษณาเพื่อรับเวลาใช้งาน',
         account_id: accountId,
         username: username,
-        expire_at: expireAt,
       },
       { status: 201 }
     );

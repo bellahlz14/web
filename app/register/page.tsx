@@ -40,7 +40,7 @@ export default function RegisterPage() {
         return;
       }
 
-      setSuccess('ลงทะเบียนสำเร็จ! ได้รับสิทธิ์ใช้งาน 7 วัน กรุณา เข้าสู่ระบบ');
+      setSuccess('ลงทะเบียนสำเร็จ! ไปดูโฆษณาเพื่อรับเวลาใช้งาน');
       setFormData({ username: '', email: '', password: '', password_confirm: '' });
     } catch (err) {
       setError('เกิดข้อผิดพลาดในการเชื่อมต่อ');
@@ -119,7 +119,7 @@ export default function RegisterPage() {
         ) : (
           <div className={styles.successContent}>
             <div className={styles.successIcon}>✓</div>
-            <p>กรุณาไปที่หน้า <Link href="/login">เข้าสู่ระบบ</Link> เพื่อเข้าใช้งาน</p>
+            <p>กรุณาไป <Link href="/watch-ad">ดูโฆษณา</Link> เพื่อรับเวลาใช้งาน</p>
           </div>
         )}
       </div>
