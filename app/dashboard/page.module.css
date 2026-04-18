@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+}
+
+.card h1 {
+  color: #f3202b;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #333;
+  border-top: 4px solid #f3202b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+.message {
+  background: #248b24;
+  color: #ccffcc;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #33b333;
+  text-align: center;
+}
+
+.error {
+  background: #8b2424;
+  color: #ffcccc;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid #b33333;
+}
+
+.userInfo {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: #999;
+  font-size: 14px;
+}
+
+.value {
+  color: #ccc;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.active {
+  color: #6bff6b;
+  font-weight: 600;
+}
+
+.expired {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 12px;
+  background: #f3202b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #d41a22;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

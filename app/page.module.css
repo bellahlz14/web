@@ -1,0 +1,138 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  text-align: center;
+}
+
+.title {
+  color: #f3202b;
+  font-size: 40px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #999;
+  font-size: 16px;
+  margin: 0 0 40px 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.btnPrimary,
+.btnSecondary,
+.btnGhost {
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: block;
+  cursor: pointer;
+  border: none;
+}
+
+.btnPrimary {
+  background: #f3202b;
+  color: #fff;
+}
+
+.btnPrimary:hover {
+  background: #d41a22;
+  transform: translateY(-2px);
+}
+
+.btnSecondary {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #f3202b;
+}
+
+.btnSecondary:hover {
+  background: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.btnGhost {
+  background: transparent;
+  color: #999;
+  border: 1px solid #3a3a3a;
+}
+
+.btnGhost:hover {
+  color: #ccc;
+  border-color: #f3202b;
+  background: rgba(243, 32, 43, 0.05);
+}
+
+.info {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+}
+
+.info h3 {
+  color: #f3202b;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  color: #ccc;
+  font-size: 14px;
+  padding: 8px 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
+  .btnPrimary,
+  .btnSecondary,
+  .btnGhost {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
