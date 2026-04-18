@@ -18,6 +18,22 @@ export default function QrAuthPage() {
   const [error, setError] = useState('');
   const [polling, setPolling] = useState(!!paramToken);
   const [confirmingDevice, setConfirmingDevice] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ตรวจสอบการ login
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      try {
+        JSON.parse(userStr);
+        setIsLoggedIn(true);
+      } catch {
+        setError('ข้อมูลผู้ใช้ไม่ถูกต้อง');
+      }
+    } else {
+      setError('กรุณา เข้าสู่ระบบ ก่อน');
+    }
+  }, []);
 
   // สร้าง QR ใหม่ถ้าไม่มี token
   useEffect(() => {
@@ -147,7 +163,11 @@ export default function QrAuthPage() {
         {message && <div className={styles.message}>{message}</div>}
         {error && <div className={styles.error}>{error}</div>}
 
-        {loading ? (
+        {!isLoggedIn ? (
+          <div className={styles.notLoggedIn}>
+            <p>⚠️ กรุณา เข้าสู่ระบบ ก่อนเชื่อมต่ออุปกรณ์</p>
+          </div>
+        ) : loading ? (
           <div className={styles.loading}>
             <div className={styles.spinner}></div>
             <p>กำลังสร้าง QR Code...</p>

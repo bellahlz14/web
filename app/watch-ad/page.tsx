@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function WatchAdPage() {
@@ -129,20 +128,12 @@ export default function WatchAdPage() {
               placeholder="กรอก Device ID ของคุณ"
               className={styles.input}
             />
-            <p className={styles.help}>
-              ได้รับ Device ID จากแอปพลิเคชันหรือ QR code
-            </p>
           </div>
 
           <button type="submit" className={styles.submitBtn}>
             ดูโฆษณา
           </button>
         </form>
-
-        <div className={styles.footer}>
-          <p>มีบัญชีแล้ว? <Link href="/login">เข้าสู่ระบบ</Link></p>
-          <p>ยังไม่มีบัญชี? <Link href="/register">ลงทะเบียน</Link></p>
-        </div>
       </div>
     </div>
   );
