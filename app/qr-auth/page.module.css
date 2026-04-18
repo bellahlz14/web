@@ -168,13 +168,57 @@
 }
 
 .notLoggedIn {
-  background: #8b5a2b;
-  color: #ffddaa;
-  padding: 20px;
-  border-radius: 6px;
-  border: 1px solid #b37a3b;
   text-align: center;
+  padding: 40px 20px;
+}
+
+.notLoggedIn p {
+  color: #ccc;
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.authButtons {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.loginBtn {
+  padding: 16px 20px;
+  background: #f3202b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
   font-size: 16px;
+  transition: all 0.3s;
+}
+
+.loginBtn:hover {
+  background: #d41a22;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 32, 43, 0.3);
+}
+
+.registerBtn {
+  padding: 16px 20px;
+  background: transparent;
+  color: #f3202b;
+  border: 2px solid #f3202b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.registerBtn:hover {
+  background: rgba(243, 32, 43, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 32, 43, 0.2);
 }
 
 @keyframes spin {
@@ -190,30 +234,6 @@
   50% {
     opacity: 0.5;
   }
-}
-
-.authButtons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.loginBtn,
-.registerBtn {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #f3202b;
-  background: transparent;
-  color: #f3202b;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-
-.loginBtn:hover,
-.registerBtn:hover {
-  background: rgba(243, 32, 43, 0.1);
 }
 
 .modal {
