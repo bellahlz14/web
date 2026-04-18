@@ -167,6 +167,16 @@
   font-size: 14px;
 }
 
+.notLoggedIn {
+  background: #8b5a2b;
+  color: #ffddaa;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #b37a3b;
+  text-align: center;
+  font-size: 16px;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
