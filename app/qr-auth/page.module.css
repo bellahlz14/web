@@ -15,13 +15,39 @@
   padding: 40px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
-  text-align: center;
 }
 
 .card h1 {
   color: #f3202b;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-size: 28px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #999;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #333;
+}
+
+.section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.section h3 {
+  color: #f3202b;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 .qrContainer {
@@ -29,20 +55,79 @@
   padding: 20px;
   border-radius: 8px;
   display: inline-block;
-  margin-bottom: 20px;
-}
-
-.instruction {
-  color: #ccc;
-  font-size: 16px;
-  margin-bottom: 15px;
+  margin: 0 auto 20px;
+  block-size: fit-content;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 
 .waiting {
   color: #f3202b;
   font-size: 14px;
-  margin-top: 15px;
+  text-align: center;
   animation: pulse 1s infinite;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #f3202b;
+  box-shadow: 0 0 0 2px rgba(243, 32, 43, 0.1);
+}
+
+.confirmBtn {
+  width: 100%;
+  padding: 12px;
+  background: #f3202b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background: #d41a22;
+}
+
+.confirmBtn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.statusBtn {
+  width: 100%;
+  padding: 12px;
+  background: #2a4a6a;
+  color: #fff;
+  border: 1px solid #3a6a9a;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.statusBtn:hover {
+  background: #3a5a7a;
 }
 
 .loading {
@@ -63,19 +148,23 @@
 .message {
   background: #248b24;
   color: #ccffcc;
-  padding: 15px;
+  padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
   border: 1px solid #33b333;
+  text-align: center;
+  font-size: 14px;
 }
 
 .error {
   background: #8b2424;
   color: #ffcccc;
-  padding: 15px;
+  padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
   border: 1px solid #b33333;
+  text-align: center;
+  font-size: 14px;
 }
 
 @keyframes spin {
