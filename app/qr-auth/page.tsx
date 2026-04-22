@@ -27,6 +27,7 @@ export default function QrAuthPage() {
     password: '',
     email: '',
     password_confirm: '',
+    code: '',
   });
 
   // ตรวจสอบการ login
@@ -184,7 +185,7 @@ export default function QrAuthPage() {
         }));
         setIsLoggedIn(true);
         setShowAuthModal(false);
-        setAuthFormData({ username: '', password: '', email: '', password_confirm: '' });
+        setAuthFormData({ username: '', password: '', email: '', password_confirm: '', code: '' });
       } else {
         setError(data.error || 'เกิดข้อผิดพลาด');
       }
@@ -347,6 +348,23 @@ export default function QrAuthPage() {
                     })
                   }
                   placeholder="ยืนยันรหัสผ่าน"
+                />
+              </div>
+            )}
+
+            {authMode === 'register' && (
+              <div className={styles.formGroup}>
+                <label>รหัสลงทะเบียน (Code)</label>
+                <input
+                  type="text"
+                  value={authFormData.code}
+                  onChange={(e) =>
+                    setAuthFormData({
+                      ...authFormData,
+                      code: e.target.value,
+                    })
+                  }
+                  placeholder="รหัสลงทะเบียน"
                 />
               </div>
             )}

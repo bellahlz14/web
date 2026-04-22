@@ -6,10 +6,19 @@ import { validateEmail, validatePassword, validatePasswordMatch, validateUsernam
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { username, email, password, password_confirm, deviceid, device_name, app_os, app_version } = body;
+    const { username, email, password, password_confirm, code, deviceid, device_name, app_os, app_version } = body;
+
+    // Validate registration code first
+    const secretCode = process.env.REGISTER_SECRET_CODE;
+    if (!secretCode || code !== secretCode) {
+      return NextResponse.json(
+        { error: 'Code ลงทะเบียนไม่ถูกต้อง' },
+        { status: 400 }
+      );
+    }
 
     // Validation
-    if (!username || !email || !password || !password_confirm) {
+    if (!username || !email || !password || !password_confirm || !code) {
       return NextResponse.json(
         { error: 'กรุณากรอกข้อมูลให้ครบถ้วน' },
         { status: 400 }

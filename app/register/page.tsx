@@ -10,6 +10,7 @@ export default function RegisterPage() {
     email: '',
     password: '',
     password_confirm: '',
+    code: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -104,6 +105,17 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   required
                   minLength={6}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>รหัสลงทะเบียน (Code)</label>
+                <input
+                  type="text"
+                  name="code"
+                  value={formData.code}
+                  onChange={handleChange}
+                  required
                 />
               </div>
 
