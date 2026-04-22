@@ -42,7 +42,7 @@ export default function RegisterPage() {
       }
 
       setSuccess('ลงทะเบียนสำเร็จ! ไปดูโฆษณาเพื่อรับเวลาใช้งาน');
-      setFormData({ username: '', email: '', password: '', password_confirm: '' });
+      setFormData({ username: '', email: '', password: '', password_confirm: '', code: '' });
     } catch (err) {
       setError('เกิดข้อผิดพลาดในการเชื่อมต่อ');
     } finally {
