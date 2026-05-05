@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
     // Find user by username and email
     const user = await fetch(
-      'SELECT id FROM users WHERE username = ? AND email = ?',
+      'SELECT id FROM accounts WHERE username = ? AND email = ?',
       [username, email]
     ) as any;
 

@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     // Find user
     const user = await fetch(
-      'SELECT id FROM users WHERE username = ?',
+      'SELECT id FROM accounts WHERE username = ?',
       [username]
     ) as any;
 
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
     // Update user password
     await execute(
-      'UPDATE users SET password = ? WHERE id = ?',
+      'UPDATE accounts SET password_hash = ? WHERE id = ?',
       [hashedPassword, user.id]
     );
 
