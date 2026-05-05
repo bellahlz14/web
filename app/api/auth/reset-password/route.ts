@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetch, execute } from '@/lib/db';
+import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
 export async function POST(request: NextRequest) {
@@ -33,11 +34,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Hash new password using crypto (simple hash, not bcrypt)
-    const hashedPassword = crypto
-      .createHash('sha256')
-      .update(newPassword)
-      .digest('hex');
+    // Hash new password using bcrypt (same as login)
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     console.log(`[RESET] Attempting to reset password for user: ${username} (id: ${user.id})`);
     console.log(`[RESET] Token provided: ${token}`);
