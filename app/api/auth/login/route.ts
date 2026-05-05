@@ -38,16 +38,22 @@ export async function POST(request: NextRequest) {
     }
 
     // Check subscription
-    const subscription: any = await fetch(
+    let subscription: any = await fetch(
       'SELECT expire_at FROM subscriptions WHERE account_id = ? ORDER BY expire_at DESC LIMIT 1',
       [user.id]
     );
 
+    // If no subscription, create one with 30 days expiry
     if (!subscription) {
-      return NextResponse.json(
-        { error: 'ไม่พบสิทธิ์การใช้งาน' },
-        { status: 403 }
+      const expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() + 30);
+
+      await fetch(
+        'INSERT INTO subscriptions (account_id, expire_at, granted_by) VALUES (?, ?, ?)',
+        [user.id, expireDate, 'auto-created']
       );
+
+      subscription = { expire_at: expireDate };
     }
 
     const expireAt = new Date(subscription.expire_at);
