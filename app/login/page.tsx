@@ -92,7 +92,12 @@ export default function LoginPage() {
         </form>
 
         <div className={styles.footer}>
-          ยังไม่มีบัญชี? <Link href="/register">ลงทะเบียน</Link>
+          <div>
+            ยังไม่มีบัญชี? <Link href="/register">ลงทะเบียน</Link>
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <Link href="/forgot-password">ลืมรหัสผ่าน?</Link>
+          </div>
         </div>
       </div>
     </div>
